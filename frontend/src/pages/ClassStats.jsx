@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ClassStats.css";
 import TopicsPanel from "../components/TopicsPanel";
 import QuestionsPanel from "../components/QuestionsPanel";
@@ -16,31 +16,35 @@ import {
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend);
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ClassStats = () => {
+  const [classData, setClassData] = useState([]);
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const [error, setError] = useState("");
 
-  const classData = [
-    { name: "Class 1", questions: 5 },
-    { name: "Class 2", questions: 3 },
-    { name: "Class 3", questions: 7 },
-    { name: "Class 4", questions: 4 },
-    { name: "Class 5", questions: 6 },
-  ];
-
-  const topicData = [
-    { topic: "Topic 1", questions: 3 },
-    { topic: "Topic 2", questions: 5 },
-    { topic: "Topic 3", questions: 2 },
-    { topic: "Topic 4", questions: 4 },
-  ];
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const res = await fetch(`${API_URL}/analytics/questions`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        setClassData(json.questions_per_class || []);
+      } catch (err) {
+        console.error("Error fetching class data:", err);
+        setError("Failed to load class analytics.");
+      }
+    };
+    fetchQuestions();
+  }, []);
 
   const chartData = {
-    labels: classData.map((c) => c.name),
+    labels: classData.map((c) => c.lecture_title || `Lecture ${c.id}`),
     datasets: [
       {
-        label: "Questions",
-        data: classData.map((c) => c.questions),
+        label: "Questions per Class",
+        data: classData.map((c) => c.total_questions || 0),
         borderColor: "#2563eb",
         backgroundColor: "rgba(37,99,235,0.2)",
         tension: 0.4,
@@ -55,48 +59,43 @@ const ClassStats = () => {
         <h1 className="page-title">Class Analytics</h1>
       </div>
 
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
       <div className={`class-stats-container ${selectedTopic ? "three-columns" : ""}`}>
-        {/* Left Panel - Class Concerns */}
+        {/* Left Panel */}
         <div className="class-concerns">
           <div className="gradient-box">Class Concerns</div>
           <table>
             <thead>
               <tr>
-                <th>Class</th>
+                <th>Lecture</th>
                 <th>Questions</th>
               </tr>
             </thead>
             <tbody>
               {classData.map((c, index) => (
-                <tr
-                  key={index}
-                  onClick={() => {
-                    setSelectedClass(c.name);
-                    setSelectedTopic(null);
-                  }}
-                >
-                  <td>{c.name}</td>
-                  <td>{c.questions}</td>
+                <tr key={index} onClick={() => setSelectedClass(c.lecture_title)}>
+                  <td>{c.lecture_title || `Lecture ${c.id}`}</td>
+                  <td>{c.total_questions || 0}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* Right Panel - Graph (hidden when topic selected) */}
-        {!selectedTopic && (
-          <div className={`class-graph ${selectedClass ? "shrink" : ""}`}>
-            <h2>Questions Per Class</h2>
-            <Line data={chartData} />
-          </div>
-        )}
+        {/* Graph */}
+        <div className="class-graph">
+          <h2>Questions Per Lecture</h2>
+          <Line data={chartData} />
+        </div>
 
-        {/* Topics Panel - Appears on click */}
+        {/* Optional topic/question panels */}
         {selectedClass && (
-          <TopicsPanel topics={topicData} onSelectTopic={(t) => setSelectedTopic(t)} />
+          <TopicsPanel
+            topics={classData.find((x) => x.lecture_title === selectedClass)?.topics || []}
+            onSelectTopic={(t) => setSelectedTopic(t)}
+          />
         )}
-
-        {/* Questions Panel - Appears on topic click */}
         {selectedTopic && <QuestionsPanel selectedTopic={selectedTopic} />}
       </div>
     </div>
@@ -104,4 +103,3 @@ const ClassStats = () => {
 };
 
 export default ClassStats;
-

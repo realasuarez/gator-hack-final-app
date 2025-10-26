@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Roadmap from "../components/Roadmap/Roadmap";
 import TeacherProfile from "../components/TeacherProfile";
@@ -7,12 +7,17 @@ import "./HomePage.css";
 const HomePage = () => {
   const navigate = useNavigate();
 
+  // 🌟 New state to hold the AI-generated roadmap
+  const [roadmapData, setRoadmapData] = useState(null);
+
   return (
     <div className="dashboard-container">
       {/* Header */}
       <header className="dashboard-header">
         <h1 className="dashboard-title">Dashboard</h1>
-        <TeacherProfile />
+
+        {/* Pass the update function to TeacherProfile */}
+        <TeacherProfile onRoadmapUpdate={setRoadmapData} />
       </header>
 
       {/* Main Section */}
@@ -20,7 +25,9 @@ const HomePage = () => {
         {/* Sidebar - Roadmap */}
         <aside className="dashboard-sidebar">
           <h2 className="gradient-box">Semester Lectures</h2>
-          <Roadmap />
+
+          {/* Pass roadmap data to Roadmap */}
+          <Roadmap roadmapData={roadmapData} />
         </aside>
 
         {/* Main dashboard area */}
@@ -43,7 +50,7 @@ const HomePage = () => {
             >
               <div className="stats-icon">🏫</div>
               <div className="stats-info">
-                <h3>Class Analystics</h3>
+                <h3>Class Analytics</h3>
                 <p>View class statistics</p>
               </div>
             </div>
@@ -52,8 +59,7 @@ const HomePage = () => {
           <div className="welcome-section">
             <h2>Course Analytics:</h2>
             <p>
-              Use the semester roadmap to navigate through your courses and
-              access student and class statistics using the buttons above.
+              Use the semester roadmap to track syllabus coverage and lecture progress.
             </p>
           </div>
         </section>

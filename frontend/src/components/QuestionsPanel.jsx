@@ -2,57 +2,54 @@ import React, { useEffect, useState } from "react";
 import "./QuestionsPanel.css";
 
 const QuestionsPanel = ({ selectedTopic }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    if (selectedTopic) {
-      // Wait a tick to trigger the animation
-      setTimeout(() => setIsVisible(true), 10);
-    }
-  }, [selectedTopic]);
+    if (!selectedTopic) return;
+
+    const fetchQuestions = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`${API_URL}/analytics/questions`);
+        const data = await res.json();
+
+        // You can modify this depending on how your backend structures topic-level questions
+        const topicQuestions = data.questions_per_class?.filter(
+          (q) => q.topic === selectedTopic
+        );
+        setQuestions(topicQuestions || []);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuestions();
+  }, [selectedTopic, API_URL]);
 
   if (!selectedTopic) return null;
-
-  const questions = [
-    {
-      id: 1,
-      question: "What is polymorphism?",
-      answer:
-        "Polymorphism allows objects to take on many forms, typically through inheritance where subclasses override parent methods.",
-    },
-    {
-      id: 2,
-      question: "Explain recursion.",
-      answer:
-        "Recursion is when a function calls itself until a base condition is met, often used for problems like tree traversal or factorials.",
-    },
-    {
-      id: 3,
-      question: "When should inheritance be used?",
-      answer:
-        "Use inheritance when multiple classes share attributes or behavior that can be abstracted into a base class.",
-    },
-    {
-      id: 4,
-      question: "Difference between stack and heap memory?",
-      answer:
-        "Stack memory stores local variables and follows LIFO order, while heap memory stores dynamically allocated data.",
-    },
-  ];
+  if (loading) return <p style={{ textAlign: "center" }}>Loading questions...</p>;
 
   return (
-    <div className={`questions-panel ${isVisible ? "active" : ""}`}>
+    <div className="questions-panel active">
       <div className="gradient-box">Questions per Topic</div>
       <div className="questions-list">
-        {questions.map((q) => (
-          <div key={q.id} className="question-item">
-            <p className="question-text">
-              <strong>Question {q.id}:</strong> {q.question}
-            </p>
-            <p className="answer-text">{q.answer}</p>
-            <hr className="question-divider" />
-          </div>
-        ))}
+        {questions.length === 0 ? (
+          <p>No questions available for this topic yet.</p>
+        ) : (
+          questions.map((q, i) => (
+            <div key={i} className="question-item">
+              <p className="question-text">
+                <strong>Question:</strong> {q.question}
+              </p>
+              <p className="answer-text">{q.answer}</p>
+              <hr className="question-divider" />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

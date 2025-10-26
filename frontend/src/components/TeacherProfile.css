@@ -116,9 +116,53 @@
   border-radius: 8px;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .submit-button:hover {
+  opacity: 0.9;
+}
+
+/* Selected file name text */
+.input-section .file-name {
+  font-size: 0.85rem;
+  color: #333;
+  margin-top: 0.2rem;
+  word-break: break-word;
+}
+
+/* Style the native file input button like the submit button */
+.input-section input[type="file"]::file-selector-button {
+  background: linear-gradient(135deg, #0021a5, #fa4616);
+  border: none;
+  color: white;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin-right: 0.6rem;
+}
+
+.input-section input[type="file"]::file-selector-button:hover {
+  opacity: 0.9;
+}
+
+/* Safari/WebKit fallback */
+.input-section input[type="file"]::-webkit-file-upload-button {
+  background: linear-gradient(135deg, #0021a5, #fa4616);
+  border: none;
+  color: white;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin-right: 0.6rem;
+}
+
+.input-section input[type="file"]::-webkit-file-upload-button:hover {
   opacity: 0.9;
 }
 

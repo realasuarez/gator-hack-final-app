@@ -8,10 +8,12 @@ class Lecture(Base):
     id = Column(Integer, primary_key=True, index=True)
     status = Column(String, default="PROCESSING")
     transcript = Column(Text, nullable=True)
-    summary = Column(Text, nullable=True)
-    topics_json = Column(Text, nullable=True) # Will store the JSON as a string
-    quiz_json = Column(Text, nullable=True)   # Will store the JSON as a string
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    key_points_json = Column(Text, nullable=True) # For Key Points (Detailed Summary)
-    examples_json = Column(Text, nullable=True)   # For Examples Used
+    
+    summary = Column(Text, nullable=True)         # For "summaryInsight"
+    topics_json = Column(Text, nullable=True)   # For "topicsCovered"
+    quiz_json = Column(Text, nullable=True)     # For "questionsAsked"
+    key_points_json = Column(Text, nullable=True) # For "keyPoints"
+    examples_json = Column(Text, nullable=True)   # For "examplesUsed"
     lda_topics_json = Column(Text, nullable=True) # For the gensim/nltk topics
+    notes_json = Column(Text, nullable=True)      # For the rich notes
+    created_at = Column(DateTime(timezone=True), server_default=func.now())

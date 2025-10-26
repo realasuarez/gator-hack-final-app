@@ -1,0 +1,135 @@
+.teacher-profile {
+  position: relative;
+  display: inline-block;
+}
+
+/* Profile Card */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: white;
+  color: #222;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0021a5, #fa4616);
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-left: auto;
+  color: #444;
+}
+
+/* Dropdown container */
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  width: 200px;
+  transition: all 0.4s ease;
+  z-index: 10;
+}
+
+/* Expanded input mode */
+.dropdown-menu.expanded {
+  width: 320px;
+  padding: 0.1rem 1rem 0.6rem 1rem;
+}
+
+
+/* Options in menu */
+.dropdown-option {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #222;
+  transition: background 0.2s ease, color 0.3s ease;
+}
+
+.dropdown-option:hover {
+  background: rgba(0, 33, 165, 0.1);
+  color: #0021a5;
+}
+
+/* Input Section */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem; /* slightly tighter spacing between input & button */
+  margin-top: 0.1rem; /* removes large gap above input */
+  animation: fadeIn 0.3s ease;
+}
+
+/* Back button */
+.back-button {
+  background: none;
+  border: none;
+  color: #0021a5;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-align: left;
+  padding: 0;
+}
+
+/* Text input */
+.input-section input {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-section input:focus {
+  border-color: #0021a5;
+}
+
+/* Submit button */
+.submit-button {
+  background: linear-gradient(135deg, #0021a5, #fa4616);
+  border: none;
+  color: white;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.submit-button:hover {
+  opacity: 0.9;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

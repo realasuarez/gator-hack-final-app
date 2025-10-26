@@ -1,0 +1,58 @@
+.roadmap {
+  width: 100%;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  color: rgba(255, 255, 255, 0.95);
+  background: transparent;
+}
+
+.roadmap h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: black;
+  opacity: 0.9;
+}
+
+/* Lecture Card (frosted look retained, no hover) */
+.lecture-section {
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  background: rgba(40, 40, 46, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* Module + Topics */
+.module-name {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.8rem;
+}
+
+.topic-list {
+  list-style: disc;
+  margin-left: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+/* Future AI Analysis States */
+.topic-hit {
+  color: #b6ffba;
+  text-shadow: 0 0 8px rgba(102, 255, 102, 0.5);
+}
+
+.topic-miss {
+  color: #ffb6b6;
+  text-shadow: 0 0 8px rgba(255, 102, 102, 0.4);
+}
+
+.topic-pending {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}

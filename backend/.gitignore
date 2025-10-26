@@ -1,0 +1,61 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+.env/    # sometimes virtualenvs are named ".env"
+
+# Environment / secrets
+.env
+.env.*            # any other env files
+
+# Uploads / temp
+temp_uploads/
+uploads/
+tmp/
+*.tmp
+
+# Databases
+*.db
+*.sqlite
+hackathon.db
+*.sqlite3
+
+# Python tooling/cache
+.mypy_cache/
+.pytest_cache/
+.cache/
+pip-wheel-metadata/
+*.egg-info/
+
+# Editor / OS files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+Thumbs.db
+
+# Test / coverage
+.coverage
+coverage.xml
+htmlcov/
+
+# Distribution / build
+dist/
+build/
+eggs/
+.eggs/
+.wheelhouse/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+logs/

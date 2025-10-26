@@ -1,0 +1,175 @@
+.class-stats {
+  background: linear-gradient(135deg, #0021a5, #fa4616);
+  min-height: 100vh;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.header-row .back-button {
+  margin-bottom: 0;
+}
+
+.page-title {
+  margin: 0;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.class-stats-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5rem;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+/* When a topic is selected, show three columns cleanly */
+.class-stats-container.three-columns {
+  gap: 1rem;
+}
+
+/* CLASS CONCERNS (smaller width to make room for Topics) */
+.class-concerns {
+  background: rgba(255, 255, 255, 0.95);
+  color: #222;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  flex: 0.9;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  transition: flex 0.4s ease, transform 0.4s ease, width 0.4s ease;
+  margin-top: 2rem;
+}
+
+/* GRAPH */
+.class-graph {
+  background: rgba(255, 255, 255, 0.95);
+  color: #222;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  flex: 1.5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  margin-top: 0;
+  transition: all 0.6s ease;
+  transform-origin: top right;
+  position: relative;
+}
+
+.class-graph.shrink {
+  transform: scale(0.45);
+  position: absolute;
+  top: -5.5rem;          
+  right: 0.5rem;       
+  width: 32%;          
+  opacity: 0.95;
+  z-index: 1;
+}
+
+/* TOPICS PANEL — moved slightly toward center */
+.topics-panel {
+  background: rgba(255, 255, 255, 0.95);
+  color: #222;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  flex: 1.1;
+  align-self: flex-start;
+  margin-left: 0.5rem;
+  margin-top: 2rem;
+  transform: translateX(-4rem);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease forwards;
+  z-index: 2;
+  transition: flex 0.4s ease, transform 0.4s ease, width 0.4s ease, margin 0.3s ease;
+}
+
+/* Three-column layout widths */
+.class-stats-container.three-columns .class-concerns {
+  flex: 0.9;
+}
+
+.class-stats-container.three-columns .topics-panel {
+  flex: 1;
+  margin-left: 0;
+  margin-top: 2rem; /* keep aligned in 3-column layout */
+  transform: none;
+}
+
+.class-stats-container.three-columns .questions-panel {
+  flex: 1.2;
+}
+
+.gradient-box {
+  background: linear-gradient(90deg, #0021a5, #fa4616);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  text-align: left;
+}
+
+tr {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+tr:hover {
+  background: rgba(0, 33, 165, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Override: so graph */
+.class-graph.shrink {
+  top: -5.2rem;
+}

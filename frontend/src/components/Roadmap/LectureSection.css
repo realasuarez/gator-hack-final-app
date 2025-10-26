@@ -1,0 +1,28 @@
+.lecture-section {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  background: #fafafa;
+}
+
+.lecture-section h3 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.module {
+  margin-bottom: 0.8rem;
+}
+
+.module-name {
+  font-weight: 600;
+  color: #444;
+}
+
+.topic-list {
+  margin-left: 1rem;
+  list-style: disc;
+  color: #555;
+  font-size: 0.9rem;
+}

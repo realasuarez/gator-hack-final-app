@@ -1,0 +1,178 @@
+/* Background gradient - UF colors */
+.dashboard-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0021a5 0%, #fa4616 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2rem;
+}
+
+.dashboard-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Main Layout */
+.dashboard-main {
+  display: flex;
+  flex: 1;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  width: 25%;
+  min-width: 280px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  overflow-y: auto;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/* Transparent Dashboard Body */
+.dashboard-body {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-body:hover {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Stats Cards Row */
+.stats-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Base Card Style */
+.stats-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  color: black;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
+}
+
+/* Hover animation */
+.stats-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Themed Hover Colors */
+.stats-card.student:hover {
+  background: rgba(0, 53, 173, 0.85); /* UF Blue */
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+}
+
+.stats-card.class:hover {
+  background: rgba(250, 70, 22, 0.85); /* UF Orange */
+  box-shadow: 0 8px 25px rgba(255, 120, 50, 0.45);
+}
+
+/* Icons */
+.stats-icon {
+  font-size: 2rem;
+  line-height: 1;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.stats-card:hover .stats-icon {
+  transform: scale(1.2) rotate(3deg);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+}
+
+/* Text */
+.stats-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.stats-info p {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* Welcome Section */
+.welcome-section {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.welcome-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Scrollbar for Sidebar */
+.dashboard-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.gradient-box {
+  background: linear-gradient(90deg, #0021a5, #fa4616);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}

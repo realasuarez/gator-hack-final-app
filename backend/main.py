@@ -5,7 +5,7 @@ from fastapi import BackgroundTasks, HTTPException, Depends, UploadFile, File, F
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
-
+import json
 import database
 import models
 import schemas
@@ -71,7 +71,7 @@ def get_lecture_status(lecture_id: int, db: Session = Depends(get_db)):
 def get_lecture_notes(lecture_id: int, db: Session = Depends(get_db)):
     """
     Returns the full, pedagogically structured class notes as a JSON object
-    (from the 'notes_json' column in the database).
+    (from the new 'notes_json' column).
     """
     lecture = db.query(models.Lecture).filter(models.Lecture.id == lecture_id).first()
     if not lecture:
@@ -83,6 +83,8 @@ def get_lecture_notes(lecture_id: int, db: Session = Depends(get_db)):
     if not lecture.notes_json:
         raise HTTPException(status_code=404, detail="Notes were not found or could not be generated for this lecture.")
     
+    # Parse the string from the DB into a real JSON object
+    # This sends a clean JSON object to the frontend, not a string
     try:
         notes_object = json.loads(lecture.notes_json)
         return notes_object

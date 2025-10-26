@@ -1,13 +1,18 @@
-from pydantic import BaseModel, ConfigDict # Import ConfigDict
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 
 class LectureResponse(BaseModel):
     id: int
     status: str
     transcript: Optional[str] = None
+    
     summary: Optional[str] = None
     topics_json: Optional[str] = None
     quiz_json: Optional[str] = None
+    key_points_json: Optional[str] = None
+    examples_json: Optional[str] = None 
+    lda_topics_json: Optional[str] = None  
+    notes_json: Optional[str] = None
     
     model_config = ConfigDict(from_attributes=True)
     

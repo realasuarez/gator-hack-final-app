@@ -23,14 +23,6 @@ from dotenv import load_dotenv
 # --------------------------------------------
 from fastapi.middleware.cors import CORSMiddleware
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # or restrict to your frontend domain
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 load_dotenv()
 print("--- 1. RUNNING main.py ---")
 print(f"--- 2. Current Directory: {os.getcwd()} ---")
@@ -60,6 +52,14 @@ print("--- 4. Services initialized ---")
 
 # Initialize FastAPI app
 app = FastAPI(title="Professor Lecture Analytics API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or restrict to your frontend domain
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Create the database tables
 try:

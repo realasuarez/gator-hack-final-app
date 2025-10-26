@@ -3,7 +3,7 @@ import React from "react";
 const QuizPanel = ({ classes, selectedIds, onToggle, onGenerate }) => {
   return (
     <div className="panel quiz-panel">
-      <div className="gradient-box">Quiz Generation</div>
+      <div className="gradient-box">Practice Questions</div>
       <div className="quiz-list">
         {classes.map((c) => {
           const checked = selectedIds.includes(c.id);
@@ -24,7 +24,7 @@ const QuizPanel = ({ classes, selectedIds, onToggle, onGenerate }) => {
       {selectedIds.length > 0 && (
         <div className="generate-row">
           <button className="generate-btn" onClick={() => onGenerate(selectedIds)}>
-            Generate Quiz
+            Generate Questions
           </button>
         </div>
       )}

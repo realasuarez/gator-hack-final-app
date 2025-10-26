@@ -27,6 +27,17 @@ os.makedirs("temp_uploads", exist_ok=True)
 # Initialize FastAPI app
 app = FastAPI(title="Professor Lecture Analytics API")
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or ["http://localhost:5173"] if you want stricter rules
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 print("--- 1. RUNNING main.py ---")
 print(f"--- 2. Current Directory: {os.getcwd()} ---")
 

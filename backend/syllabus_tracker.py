@@ -253,9 +253,3 @@ class SyllabusService:
                 topics.append(topic)
             topics.extend(day.get("subtopics", []))
         return list(set(topics)) # Return unique list
-
-    latest_file = os.path.join(RESULTS_DIR, files[0])
-    with open(latest_file, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    return {"filename": files[0], "data": data}
